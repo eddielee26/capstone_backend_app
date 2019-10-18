@@ -1,0 +1,3 @@
+@exercises.map do |exercise|
+  render partial: "exercise.json.jb", locals: { exercise: exercise }
+end

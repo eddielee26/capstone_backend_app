@@ -1,0 +1,11 @@
+{
+  id: exercise.id,
+  name: exercise.name,
+  set: exercise.set,
+  rep: exercise.rep,
+  weight: exercise.weight,
+  image: exercise.image,
+  video: exercise.video,
+  muscle_group: exercise.muscle_group,
+  user_id: exercise.user_id
+}

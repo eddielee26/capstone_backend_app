@@ -1,0 +1,7 @@
+{
+  id: workout.id,
+  date: workout.date,
+  category: workout.category,
+  note: workout.note,
+  user_id: workout.user_id
+}
