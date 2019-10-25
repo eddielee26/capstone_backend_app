@@ -13,8 +13,8 @@ class Api::ExercisesController < ApplicationController
   def create
     @exercise = Exercise.create(
       name: params[:name],
-      set: params[:set],
-      rep: params[:rep],
+      sets: params[:sets],
+      reps: params[:reps],
       weight: params[:weight],
       image: params[:image],
       video: params[:video],
@@ -31,13 +31,12 @@ class Api::ExercisesController < ApplicationController
   def update
     @exercise = Exercise.find_by(id: params[:id])
     @exercise.name = params[:name] || @exercise.name
-    @exercise.set = params[:set] || @exercise.set
-    @exercise.rep = params[:rep] || @exercise.rep
+    @exercise.sets = params[:sets] || @exercise.sets
+    @exercise.reps = params[:reps] || @exercise.reps
     @exercise.weight = params[:weight] || @exercise.weight
     @exercise.image = params[:image] || @exercise.image
     @exercise.video = params[:video] || @exercise.video
     @exercise.muscle_group = params[:muscle_group] || @exercise.muscle_group
-    # @exercise.user_id = params[:user_id] || @exercise.user_id
     if @exercise.save
       render 'show.json.jb'
     else

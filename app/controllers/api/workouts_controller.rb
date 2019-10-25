@@ -29,7 +29,6 @@ class Api::WorkoutsController < ApplicationController
     @workout.date = params[:date] || @workout.date
     @workout.category = params[:category] || @workout.category
     @workout.note = params[:note] || @workout.note
-    # @workout.user_id = params[:user_id] || @workout.user_id
     if @workout.save
       render 'show.json.jb'
     else

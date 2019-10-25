@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_013732) do
+ActiveRecord::Schema.define(version: 2019_10_25_162754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
-    t.integer "set"
-    t.integer "rep"
+    t.integer "sets"
+    t.integer "reps"
     t.integer "weight"
     t.string "image"
     t.string "video"

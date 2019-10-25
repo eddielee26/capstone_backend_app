@@ -25,23 +25,32 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.name = params[:name] || @user.name
-    @user.email = params[:email] || @user.email
-    @user.password = params[:password] || @user.password
-    @user.phone_number = params[:phone_number] || @user.phone_number
-    @user.bio = params[:bio] || @user.bio   
-    @user.misc_info = params[:misc_info] || @user.misc_info
-    if @user.save
-      render 'show.json.jb'
+
+    if current_user == @user
+      @user.name = params[:name] || @user.name
+      @user.email = params[:email] || @user.email
+      # @user.password = params[:password] || @user.password
+      @user.phone_number = params[:phone_number] || @user.phone_number
+      @user.bio = params[:bio] || @user.bio   
+      @user.misc_info = params[:misc_info] || @user.misc_info
+      if @user.save
+        render 'show.json.jb'
+      else
+        render json: {errors: @user.errors.full_messages}, status: 422
+      end
     else
-      render json: {errors: @user.errors.full_messages}, status: 422
+      render json: {message: "User does not match."}
     end
   end
 
   def destroy
-    user = User.find_by(id: params[:id])
-    user.destroy
-    render json: {message: "User destroyed"}
+    @user = User.find_by(id: params[:id])
+    if current_user == @user
+      @user.destroy
+      render json: {message: "User destroyed."}
+    else
+      render json: {message: "User does not match."}
+    end
   end
-
 end
+

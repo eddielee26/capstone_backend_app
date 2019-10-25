@@ -1,8 +1,8 @@
 {
   id: exercise.id,
   name: exercise.name,
-  set: exercise.set,
-  rep: exercise.rep,
+  sets: exercise.sets,
+  reps: exercise.reps,
   weight: exercise.weight,
   image: exercise.image,
   video: exercise.video,
