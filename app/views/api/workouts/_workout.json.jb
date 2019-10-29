@@ -1,5 +1,6 @@
 {
   id: workout.id,
+  name: workout.name,
   date: workout.date,
   category: workout.category,
   note: workout.note,

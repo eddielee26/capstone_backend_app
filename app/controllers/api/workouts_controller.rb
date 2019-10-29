@@ -12,6 +12,7 @@ class Api::WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.create(
+      name: params[:name],
       date: params[:date],
       category: params[:category],
       note: params[:note],
@@ -26,6 +27,7 @@ class Api::WorkoutsController < ApplicationController
 
   def update
     @workout = Workout.find_by(id: params[:id])
+    @workout.name = params[:name] || @workout.name
     @workout.date = params[:date] || @workout.date
     @workout.category = params[:category] || @workout.category
     @workout.note = params[:note] || @workout.note
