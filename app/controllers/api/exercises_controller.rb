@@ -51,9 +51,13 @@ class Api::ExercisesController < ApplicationController
   end
 
   def destroy
-    exercise = Exercise.find_by(id: params[:id])
-    exercise.destroy
-    render json: {message: "Exercise destroyed"}
+    @exercise = Exercise.find_by(id: params[:id])
+    if current_user.id == @exercise.user_id
+      exercise.destroy
+      render json: {message: "Exercise destroyed"}
+    else
+      render json: {message: "User does not match"}
+    end
   end
 
 end
