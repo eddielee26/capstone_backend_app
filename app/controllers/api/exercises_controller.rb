@@ -9,7 +9,11 @@ class Api::ExercisesController < ApplicationController
 
   def show
     @exercise = Exercise.find_by(id: params[:id])
-    render 'show.json.jb'
+    if current_user.id == @exercise.user_id
+      render 'show.json.jb'
+    else
+      render json: {message: "User does not match"}
+    end
   end
 
   def create

@@ -9,11 +9,15 @@ class Api::WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find_by(id: params[:id])
-    render 'show.json.jb'
+    if current_user.id == @workout.user_id
+      render 'show.json.jb'
+    else
+      render json: {message: "User does not match"}
+    end
   end
 
   def create
-    @workout = Workout.create(
+    @workout = Workout.new(
       name: params[:name],
       date: params[:date],
       category: params[:category],
