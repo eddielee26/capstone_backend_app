@@ -1,7 +1,9 @@
 class Api::ExercisesController < ApplicationController
+
+  before_action :authenticate_user
   
   def index
-    @exercises = Exercise.all
+    @exercises = current_user.exercises
     render 'index.json.jb'
   end
 
@@ -19,7 +21,7 @@ class Api::ExercisesController < ApplicationController
       image: params[:image],
       video: params[:video],
       muscle_group: params[:muscle_group],
-      user_id: params[:user_id]
+      user_id: current_user.id
     )
     if @exercise.save
       render 'show.json.jb'
