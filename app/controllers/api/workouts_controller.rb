@@ -25,6 +25,9 @@ class Api::WorkoutsController < ApplicationController
       user_id: current_user.id
     )
     if @workout.save
+      params[:exercise_ids].each do |exercise_id|
+        WorkoutExercise.create(workout_id: @workout.id, exercise_id: exercise_id)
+      end
       render 'show.json.jb'
     else
       render json: {errors: @workout.errors.full_messages}, status: 422  

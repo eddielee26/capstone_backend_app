@@ -1,1 +1,7 @@
-render partial: "workout.json.jb", locals: { workout: @workout }
+workout = render partial: "workout.json.jb", locals: { workout: @workout }
+
+workout[:exercises] = @workout.exercises.map do |exercise|
+  render partial: "api/exercises/exercise", locals: {exercise: exercise}
+end
+
+workout
