@@ -4,5 +4,5 @@ class Exercise < ApplicationRecord
   has_many :workouts, through: :workout_exercises
 
   validates :name, presence: true
-  validates :sets, :reps, :weight, numericality: { greater_than: 0 }
+  validates :sets, :reps, :weight, numericality: { greater_than: -1 }
 end
